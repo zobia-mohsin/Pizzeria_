@@ -1,18 +1,10 @@
-<p>
-    <a href="{% url 'pizzas:index' %}">Zobia's Pizza</a>
-    <a href="{% url 'pizzas:pizzas' %}">Pizzas</a>
-    {% if user.is_authenticated %}
-    Hello, {{user.username}}
-    <a href="{% url 'users:logout' %}">Log Out</a>
-    {% else %}
-    <a href="{% url 'users:register' %}">Register</a>
-    <a href="{% url 'users:login' %}">Log In</a>
-    {% endif %}
+{% extends "pizzas/base.html" %}
 
+{% block content%}
+
+
+<p>Welcome to Zobia's Pizza!
 </p>
-
-{% block content %}
-
 
 
 {% endblock content %}
