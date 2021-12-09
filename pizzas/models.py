@@ -16,5 +16,9 @@ class Toppings(models.Model):
     name = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    # to have the title of Toppings say Toppings not Toppings
+    class Meta:
+        verbose_name_plural = 'toppings'
+
     def __str__(self):
         return self.name
