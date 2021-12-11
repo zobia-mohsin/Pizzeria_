@@ -10,10 +10,15 @@
 
 <ul>
     {% for pizza in pizzas %}
-
-    <li> {{ pizza }} </li>
+    <li>
+        <h3>
+            <a href="{% url 'pizzas:pizza' pizza.id %}">{{ pizza }}</a>
+        </h3>
+    </li>
     {% empty %}
-    <li>No pizzas Have been added yet.</li>
+    <li>
+        <h3> No pizzas Have been added yet.</h3>
+    </li>
 
     {% endfor %}
 </ul>
