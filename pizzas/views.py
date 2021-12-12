@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect
 from .forms import PizzaForm, ToppingForm, CommentForm
 from .models import Pizza, Toppings, Comment
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 from django.http import Http404
+
+# Create your views here.
 
 
 def index(request):
     return render(request, 'Pizzas/index.html')
 
 
+@login_required
 def pizzas(request):
     pizzas = Pizza.objects.order_by('date')
 
@@ -20,8 +22,6 @@ def pizzas(request):
 @login_required
 def pizza(request, pizza_id):
     pizza = Pizza.objects.get(id=pizza_id)
-    # if pizza.owner != request.user:
-    #raise Http404
     toppings = pizza.toppings_set.order_by('-date_added')
     comments = pizza.comment_set.order_by('-date_added')
 
@@ -33,8 +33,10 @@ def pizza(request, pizza_id):
 def new_pizza(request):
     if request.method != 'POST':
         form = PizzaForm()
+
     else:
         form = PizzaForm(data=request.POST)
+
         if form.is_valid():
             new_pizza = form.save(commit=False)
             new_pizza.owner = request.user
@@ -71,9 +73,9 @@ def new_topping(request, pizza_id):
 def edit_topping(request, topping_id):
     topping = Toppings.objects.get(id=topping_id)
     pizza = topping.pizza
+
     if pizza.owner != request.user:
         raise Http404
-
     if request.method != 'POST':
         form = ToppingForm(instance=topping)
     else:

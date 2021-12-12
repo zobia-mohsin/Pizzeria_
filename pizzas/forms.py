@@ -8,7 +8,7 @@ class PizzaForm(forms.ModelForm):
         model = Pizza
         fields = ['name']
         labels = {'name': ''}
-        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+        #widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
 
 class ToppingForm(forms.ModelForm):
@@ -16,7 +16,7 @@ class ToppingForm(forms.ModelForm):
         model = Toppings
         fields = ['name']
         labels = {'name': ''}
-        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+        #widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
 
 class CommentForm(forms.ModelForm):
@@ -24,4 +24,4 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['name']
         labels = {'name': ''}
-        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+        #widgets = {'text': forms.Textarea(attrs={'cols': 80})}
