@@ -3,6 +3,7 @@ from .forms import PizzaForm, ToppingForm
 from .models import Pizza, Toppings
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+from django.http import Http404
 
 
 def index(request):
@@ -11,7 +12,7 @@ def index(request):
 
 @login_required
 def pizzas(request):
-    pizzas = Pizza.objects.order_by('date')
+    pizzas = Pizza.objects.filter(owner=request.user).order_by('date')
 
     context = {'pizzas': pizzas}
     return render(request, 'pizzas/pizzas.html', context)
@@ -20,6 +21,8 @@ def pizzas(request):
 @login_required
 def pizza(request, pizza_id):
     pizza = Pizza.objects.get(id=pizza_id)
+    if pizza.owner != request.user:
+        raise Http404
     toppings = pizza.toppings_set.order_by('-date_added')
     comments = pizza.comment_set.order_by('-date_added')
 
@@ -69,6 +72,8 @@ def new_topping(request, pizza_id):
 def edit_topping(request, topping_id):
     topping = Toppings.objects.get(id=topping_id)
     pizza = topping.pizza
+    if pizza.owner != request.user:
+        raise Http404
 
     if request.method != 'POST':
         form = ToppingForm(instance=topping)

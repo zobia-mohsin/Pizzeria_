@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+# 1. py manage.py makemigrations
+# 2. py manage.py migrate
+# 3. register - admin.py
 
 
 class Pizza(models.Model):
