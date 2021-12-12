@@ -13,4 +13,5 @@ urlpatterns = [
     path('new_topping/<int:pizza_id>/', views.new_topping, name='new_topping'),
     path('edit_topping/<int:topping_id>/',
          views.edit_topping, name='edit_topping'),
+    path('new_comment/<int:pizza_id>/', views.new_comment, name='new_comment'),
 ]
