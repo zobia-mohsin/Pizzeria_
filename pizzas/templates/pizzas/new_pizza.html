@@ -1,6 +1,8 @@
 {% extends "pizzas/base.html" %}
 
 {% block content %}
+
+<p><a href="{%url 'Pizza:pizza' pizza.id %}">{{ pizza }}</a></p>
 <p>Add a new pizza:</p>
 
 <form action="{% url 'pizzas:new_pizza' %}" method='post'>

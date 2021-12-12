@@ -9,13 +9,17 @@
     <li>
         <p>{{ topping.date_added|date:'M d, Y H:i }} </p>
         <p>{{ topping.text|linebreaks }}</p>
-
+        <p>
+            <a href="{% url 'pizzas:edit_topping' topping.id %}">Edit topping</a>
+        </p>
 
     </li>
     {% empty %}
-    <li> There are no toppings for this Pizza yet.</li>
+    <li> Notoppings for this Pizza have been added yet.</li>
     { endfor %}
 
 </ul>
-
+<p>
+    <a href="{% url 'pizzas:new_topping' pizza.id %}">Add a new topping</a>
+</p>
 {% endblock content %}
