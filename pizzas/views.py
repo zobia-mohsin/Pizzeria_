@@ -10,9 +10,8 @@ def index(request):
     return render(request, 'Pizzas/index.html')
 
 
-@login_required
 def pizzas(request):
-    pizzas = Pizza.objects.filter(owner=request.user).order_by('date')
+    pizzas = Pizza.objects.order_by('date')
 
     context = {'pizzas': pizzas}
     return render(request, 'pizzas/pizzas.html', context)
