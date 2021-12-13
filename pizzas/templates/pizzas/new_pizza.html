@@ -3,7 +3,7 @@
 {% block content %}
 <p>Add a new pizza:</p>
 
-<form action="{% url 'pizzas:new_pizza' %}" method='post'>
+<form action="{% url 'pizzas:new_pizza' %}" method='post' enctype='multipart/form-data'>
 
     {% csrf_token %}
     {{ form.as_p }}

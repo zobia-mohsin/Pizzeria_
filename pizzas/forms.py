@@ -6,7 +6,7 @@ from .models import Pizza, Toppings, Comment
 class PizzaForm(forms.ModelForm):
     class Meta:
         model = Pizza
-        fields = ['name']
+        fields = ['name', 'header_image']
         labels = {'name': ''}
         #widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 

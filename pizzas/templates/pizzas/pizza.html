@@ -2,13 +2,22 @@
 
 {% block page_header %}
 <h3>{{ pizza }}</h3>
+
 {% endblock page_header %}
 
 
 {% block content %}
-
+<p>
+    {% if pizza.header_image %}
+    <img src="{{ pizza.header_image.url }}">
+    {% endif %}
+    </br /><br />
+</p>
 <p>Pizza: {{ pizza.name }}</p>
+
 <ul>
+
+
     {% for topping in toppings %}
     <li>
         <p>{{ topping.name|linebreaks }}</p>
